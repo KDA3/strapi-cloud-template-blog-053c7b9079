@@ -9,7 +9,8 @@
       "type": "integer",
       "required": true,
       "min": 1,
-      "max": 100
+      "max": 100,
+      "unique": true
     },
     "questionText": {
       "type": "string",

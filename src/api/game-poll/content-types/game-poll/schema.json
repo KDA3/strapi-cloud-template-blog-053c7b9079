@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "game_polls",
+  "info": {
+    "singularName": "game-poll",
+    "pluralName": "game-polls",
+    "displayName": "gamePoll"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "gameId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "questions": {
+      "type": "component",
+      "component": "polls.poll-question",
+      "repeatable": true
+    }
+  }
+}
