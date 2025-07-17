@@ -26,9 +26,7 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "value": {
       "type": "integer",
@@ -38,7 +36,7 @@
     "quantity": {
       "type": "integer",
       "required": true,
-      "min": 1
+      "min": 0
     },
     "expirationDate": {
       "type": "date"
