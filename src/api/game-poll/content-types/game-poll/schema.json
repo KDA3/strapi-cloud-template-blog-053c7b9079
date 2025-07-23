@@ -13,13 +13,13 @@
   "attributes": {
     "gameId": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": true
     },
     "questions": {
       "type": "component",
-      "component": "polls.poll-question",
-      "repeatable": true
+      "component": "polls.questions",
+      "repeatable": true,
+      "required": true
     }
   }
 }

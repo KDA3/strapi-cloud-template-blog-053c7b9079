@@ -20,6 +20,19 @@ export interface PollsPollQuestion extends Struct.ComponentSchema {
   };
 }
 
+export interface PollsQuestions extends Struct.ComponentSchema {
+  collectionName: 'components_polls_questions';
+  info: {
+    displayName: 'questions';
+  };
+  attributes: {
+    questionNumber: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    questionText: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -86,6 +99,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'polls.poll-question': PollsPollQuestion;
+      'polls.questions': PollsQuestions;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;

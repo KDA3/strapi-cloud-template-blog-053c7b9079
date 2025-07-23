@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_polls_questions",
+  "info": {
+    "displayName": "questions"
+  },
+  "options": {},
+  "attributes": {
+    "questionNumber": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "questionText": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}
