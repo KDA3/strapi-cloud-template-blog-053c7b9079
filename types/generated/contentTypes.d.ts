@@ -432,6 +432,68 @@ export interface ApiGamePollGamePoll extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiGameTeamGameTeam extends Struct.CollectionTypeSchema {
+  collectionName: 'game_teams';
+  info: {
+    displayName: 'gameTeam';
+    pluralName: 'game-teams';
+    singularName: 'game-team';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    leagueName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::game-team.game-team'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    primaryColor: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    record: Schema.Attribute.String & Schema.Attribute.DefaultTo<'0-0'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGameVenueGameVenue extends Struct.CollectionTypeSchema {
+  collectionName: 'game_venues';
+  info: {
+    displayName: 'gameVenue';
+    pluralName: 'game-venues';
+    singularName: 'game-venue';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    city: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::game-venue.game-venue'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    timezone: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -509,6 +571,44 @@ export interface ApiRewardReward extends Struct.CollectionTypeSchema {
         },
         number
       >;
+  };
+}
+
+export interface ApiScheduledGameScheduledGame
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'scheduled_games';
+  info: {
+    displayName: 'Scheduled Game';
+    pluralName: 'scheduled-games';
+    singularName: 'scheduled-game';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    awayTeam: Schema.Attribute.Relation<'oneToOne', 'api::game-team.game-team'>;
+    awayTeamScore: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    homeTeam: Schema.Attribute.Relation<'oneToOne', 'api::game-team.game-team'>;
+    homeTeamScore: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    leagueName: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::scheduled-game.scheduled-game'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    startTime: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    state: Schema.Attribute.Enumeration<['scheduled', 'live', 'finished']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    venue: Schema.Attribute.Relation<'oneToOne', 'api::game-venue.game-venue'>;
+    youtubeVideoId: Schema.Attribute.String;
   };
 }
 
@@ -1023,8 +1123,11 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
       'api::game-poll.game-poll': ApiGamePollGamePoll;
+      'api::game-team.game-team': ApiGameTeamGameTeam;
+      'api::game-venue.game-venue': ApiGameVenueGameVenue;
       'api::global.global': ApiGlobalGlobal;
       'api::reward.reward': ApiRewardReward;
+      'api::scheduled-game.scheduled-game': ApiScheduledGameScheduledGame;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

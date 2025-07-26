@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "game_teams",
+  "info": {
+    "singularName": "game-team",
+    "pluralName": "game-teams",
+    "displayName": "gameTeam"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "logo": {
+      "type": "string"
+    },
+    "primaryColor": {
+      "type": "string"
+    },
+    "record": {
+      "type": "string",
+      "default": "0-0"
+    },
+    "leagueName": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scheduled_games",
+  "info": {
+    "singularName": "scheduled-game",
+    "pluralName": "scheduled-games",
+    "displayName": "Scheduled Game"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "leagueName": {
+      "type": "string",
+      "required": true
+    },
+    "startTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "state": {
+      "type": "enumeration",
+      "enum": [
+        "scheduled",
+        "live",
+        "finished"
+      ]
+    },
+    "homeTeamScore": {
+      "type": "integer",
+      "default": 0
+    },
+    "awayTeamScore": {
+      "type": "integer",
+      "default": 0
+    },
+    "youtubeVideoId": {
+      "type": "string"
+    },
+    "homeTeam": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::game-team.game-team"
+    },
+    "awayTeam": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::game-team.game-team"
+    },
+    "venue": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::game-venue.game-venue"
+    }
+  }
+}
